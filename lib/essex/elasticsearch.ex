@@ -1,6 +1,7 @@
 defmodule Essex.Elasticsearch do
   use HTTPoison.Base
 
+  def process_request_body(nil), do: ""
   def process_request_body(body) do
     Poison.encode!(body)
   end
