@@ -11,6 +11,13 @@ defmodule Essex.Elasticsearch do
   end
 
   def process_url(url) do
-    Application.get_env(:essex, :elasticsearch_url) <> "/" <> url
+    base_url <> "/" <> url
+  end
+
+  def base_url do
+    case Application.get_env(:essex, :elasticsearch_url) do
+      nil -> raise("Please set the ':essex, :elasticsearch_url' application config")
+      url -> url
+    end
   end
 end
